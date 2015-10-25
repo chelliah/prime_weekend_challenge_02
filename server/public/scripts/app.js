@@ -81,22 +81,34 @@ function updateIndexPoints(array){
 
 function updateMainContent(array){
     console.log(array);
+    $("#mainContent").fadeOut(500,function(){
+        $(this).empty();
+        for(var i=0;i<array.length;i++){
+            var person = array[i];
+            if(i==indexTracker){
+                $(this).append("<div class='student'>" +
+                    "<h1>Name: " + person.name + "</h1>" +
+                    "<p>Github Repo: " + person.github + "</p>" +
+                    "<p>Shoutout: " + person.shoutout + "</p>" +
+                    "</div>").fadeIn(500);
 
-    $("#mainContent").empty();
-    for(var i=0;i<array.length;i++){
-        var person = array[i];
-        if(i==indexTracker){
-            $("#mainContent").append("<div class='student'>" +
-                "<h1>Name: " + person.name + "</h1>" +
-                "<p>Github Repo: " + person.github + "</p>" +
-                "<p>Shoutout: " + person.shoutout + "</p>" +
-                "</div>");
+            }
         }
-    }
+    })
+
+    //$("#mainContent").empty();
+    //for(var i=0;i<array.length;i++){
+    //    var person = array[i];
+    //    if(i==indexTracker){
+    //        $("#mainContent").append("<div class='student'>" +
+    //            "<h1>Name: " + person.name + "</h1>" +
+    //            "<p>Github Repo: " + person.github + "</p>" +
+    //            "<p>Shoutout: " + person.shoutout + "</p>" +
+    //            "</div>");
+    //    }
+    //}
 }
 
 function fade(array){
-    $("#mainContent").fadeOut(500,function(){
-        updateIndexPoints(array).fadeIn(500);
-    })
+
 }

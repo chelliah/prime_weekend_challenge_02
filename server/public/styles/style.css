@@ -41,7 +41,13 @@ p {
 
 .index-point-active{
     background-color: red;
+    border: 1px solid darkred;
 }
+
+#mainContent{
+    min-height: 120px;
+}
+
 #carousel{
     text-align:center;
 }
