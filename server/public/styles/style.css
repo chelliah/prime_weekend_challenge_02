@@ -1,0 +1,47 @@
+div {
+    /*border: 1px solid #a3caff;*/
+    /*height: 120px;*/
+    /*margin-bottom: 10px;*/
+}
+h1{
+    text-align: center;
+}
+p {
+    text-align:center;
+    /*display:inline;*/
+}
+
+.nav-button {
+    font-size: 20px;
+    /*width: 100px;*/
+    margin: 0 20px;
+    height:25px;
+    text-align:center;
+    display:inline-block;
+}
+
+.nav-button:hover{
+    cursor:pointer;
+}
+
+.index-point{
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: cadetblue;
+    border: 1px solid darkcyan;
+    display: inline-block;
+}
+
+.index-point:hover {
+    cursor:pointer;
+}
+
+
+.index-point-active{
+    background-color: red;
+}
+#carousel{
+    text-align:center;
+}
