@@ -16,6 +16,7 @@ function onSuccess(data){
     var zetaArray = data.zeta;
     createCarousel(zetaArray);
     updateIndexPoints(zetaArray);
+    startTimer();
 
     $('#carousel').on('click','#left',function(){
         prevSlide(zetaArray);
@@ -26,11 +27,16 @@ function onSuccess(data){
     });
 
     $(".index-point").on('click',function(event){
-        console.log(event.target.id.slice(5));
+        //console.log(event.target.id.slice(5));
         var id = event.target.id.slice(5);
         indexTracker = parseInt(id);
         updateIndexPoints(zetaArray);
     })
+
+    setInterval(function(){
+        //startTimer;
+        nextSlide(zetaArray);
+    },10000);
 }
 
 function createCarousel(array){
@@ -52,6 +58,16 @@ function createNavButtons($el){
     $el.prepend("<div class='nav-button' id='left'>Left</div>");
     $el.append("<div class='nav-button' id='right'>Right</div>");
 }
+
+//var startTimer = function (){
+//    var time = 10;
+//    $("#time > p").text(time);
+//    setInterval(function timeCounter(){
+//        time--;
+//        $("#time > p").text(time);
+//    },1000);
+//    clearInterval(timeCounter);
+//}
 
 function nextSlide(array){
     indexTracker++;
