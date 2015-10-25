@@ -1,20 +1,27 @@
+body {
+    background-color: #EBFAFF;
+}
 div {
     /*border: 1px solid #a3caff;*/
     /*height: 120px;*/
     /*margin-bottom: 10px;*/
+
 }
 h1{
     text-align: center;
+    color: #1E4D7D;
 }
 p {
     text-align:center;
+    color: #1E3464;
     /*display:inline;*/
 }
 
 .nav-button {
     font-size: 20px;
+    color: #1E3464;
     /*width: 100px;*/
-    margin: 0 20px;
+    margin: auto 20px;
     height:25px;
     text-align:center;
     display:inline-block;
@@ -29,8 +36,7 @@ p {
     height: 25px;
     margin: 0 5px;
     border-radius: 50%;
-    background-color: cadetblue;
-    border: 1px solid darkcyan;
+    background-color: #BFD5EA;
     display: inline-block;
 }
 
@@ -40,8 +46,7 @@ p {
 
 
 .index-point-active{
-    background-color: red;
-    border: 1px solid darkred;
+    background-color: #1E3464;
 }
 
 #mainContent{
@@ -53,5 +58,6 @@ p {
 }
 
 #time{
+    margin-top:10px;
     text-align: center;
 }

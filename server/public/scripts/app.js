@@ -1,4 +1,10 @@
 var indexTracker = 0;
+var interval = 10000;
+var seconds = 10;
+var timerInterval = 1000;
+var fadeTime = 200;
+var autoSwitch;
+var timer;
 
 $(document).ready(function(){
     talkToServer();
@@ -16,29 +22,64 @@ function onSuccess(data){
     var zetaArray = data.zeta;
     createCarousel(zetaArray);
     updateIndexPoints(zetaArray);
-    startTimer();
+    resetTimer(zetaArray);
+    //countdown(seconds);
+
+
 
     $('#carousel').on('click','#left',function(){
         prevSlide(zetaArray);
+        resetTimer(zetaArray);
     });
 
     $('#carousel').on('click','#right',function(){
         nextSlide(zetaArray);
+        resetTimer(zetaArray);
     });
 
     $(".index-point").on('click',function(event){
         //console.log(event.target.id.slice(5));
-        var id = event.target.id.slice(5);
+        var id = event.target.id.slice(5);  //retrieves the ID of the object clicked
         indexTracker = parseInt(id);
         updateIndexPoints(zetaArray);
+        resetTimer(zetaArray);
     })
 
-    setInterval(function(){
-        //startTimer;
-        nextSlide(zetaArray);
-    },10000);
 }
 
+////TIMER FUNCTIONS
+function resetTimer(array){
+    clearInterval(autoSwitch);
+    startTimer(array);
+
+}
+
+function startTimer(array){
+    clearInterval(timer);
+    startCountdown();
+
+    autoSwitch = setInterval(function(){
+        //startTimer;
+        clearInterval(timer);
+        startCountdown();
+        nextSlide(array);
+    },interval);
+}
+
+function startCountdown(){
+    var countDownTime = seconds;
+    $("#timer").text(countDownTime);
+    timer = setInterval(function(){
+        //if(countDownTime <= 0){
+        //    clearInterval(timer);
+        //}
+        countDownTime--;
+        $("#timer").text(countDownTime);
+
+    },timerInterval);
+}
+
+////CAROUSEL SETUP FUNCTIONS
 function createCarousel(array){
     //create many things like: index points, next and prev buttons
     $("#carousel").append("<div class='main'></div>");
@@ -55,20 +96,15 @@ function createIndexPoints(array, $el) {
 }
 
 function createNavButtons($el){
-    $el.prepend("<div class='nav-button' id='left'>Left</div>");
-    $el.append("<div class='nav-button' id='right'>Right</div>");
+    $el.prepend("<div class='nav-button' id='left'>" +
+        "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>" +
+        " Left</div>");
+    $el.append("<div class='nav-button' id='right'>Right " +
+        "<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>" +
+        "</div>");
 }
 
-//var startTimer = function (){
-//    var time = 10;
-//    $("#time > p").text(time);
-//    setInterval(function timeCounter(){
-//        time--;
-//        $("#time > p").text(time);
-//    },1000);
-//    clearInterval(timeCounter);
-//}
-
+/////NEXT AND PREVIOUS FUNCTIONS
 function nextSlide(array){
     indexTracker++;
     if (indexTracker>=array.length){
@@ -85,6 +121,7 @@ function prevSlide(array) {
     updateIndexPoints(array);
 }
 
+/////UPDATE INDEX POINTS
 function updateIndexPoints(array){
     for(var i = 0; i<array.length;i++){
         $('#index' + i).removeClass('index-point-active');
@@ -95,36 +132,25 @@ function updateIndexPoints(array){
     updateMainContent(array);
 }
 
+
+////UPDATE TO DOM
 function updateMainContent(array){
+
     console.log(array);
-    $("#mainContent").fadeOut(500,function(){
+    $("#mainContent").fadeOut(fadeTime,function(){
         $(this).empty();
         for(var i=0;i<array.length;i++){
             var person = array[i];
             if(i==indexTracker){
                 $(this).append("<div class='student'>" +
-                    "<h1>Name: " + person.name + "</h1>" +
+                    "<h1>" + person.name + "</h1>" +
                     "<p>Github Repo: " + person.github + "</p>" +
                     "<p>Shoutout: " + person.shoutout + "</p>" +
-                    "</div>").fadeIn(500);
+                    "</div>").fadeIn(fadeTime);
 
             }
         }
     })
 
-    //$("#mainContent").empty();
-    //for(var i=0;i<array.length;i++){
-    //    var person = array[i];
-    //    if(i==indexTracker){
-    //        $("#mainContent").append("<div class='student'>" +
-    //            "<h1>Name: " + person.name + "</h1>" +
-    //            "<p>Github Repo: " + person.github + "</p>" +
-    //            "<p>Shoutout: " + person.shoutout + "</p>" +
-    //            "</div>");
-    //    }
-    //}
-}
-
-function fade(array){
-
+    //countdown(seconds);
 }
