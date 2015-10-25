@@ -17,6 +17,12 @@ p {
     /*display:inline;*/
 }
 
+img {
+    display: block;
+    margin: 10px auto 0px auto;
+    border-radius: 5px;
+}
+
 .nav-button {
     font-size: 20px;
     color: #1E3464;
@@ -50,7 +56,7 @@ p {
 }
 
 #mainContent{
-    min-height: 120px;
+    min-height: 340px;
 }
 
 #carousel{
