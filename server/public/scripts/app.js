@@ -145,7 +145,7 @@ function updateMainContent(array){
                 $(this).append("<div class='student'>" +
                     "<img src='"+ person.imageURL +"' alt='"+ person.name +" image' height='200' width='200'>" +
                     "<h1>" + person.name + "</h1>" +
-                    "<p>Github Repo: " + person.github + "</p>" +
+                    "<p>Github Repo: <a href=''" + person.github + "'>" + person.github + "</a></p>" +
                     "<p>Shoutout: " + person.shoutout + "</p>" +
                     "</div>").fadeIn(fadeTime);
 
